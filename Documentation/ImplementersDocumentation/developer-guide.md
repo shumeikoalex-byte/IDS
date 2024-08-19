@@ -54,7 +54,7 @@ XSD also includes a **Total Digits** and a **Fraction Digits** restriction. Thes
 
 ### Optionality
 
-Specifications can be set to **Required**, **Optional**, or **Prohibited** depending on the required match of their `applicability` on the model. 
+Specifications can be set to **Required**, **Optional**, or **Prohibited** depending on the required match of their `applicability` on the model.
 This is represented using XSD's `minOccurs` and `maxOccurs` functionality. They are represented by the following states:
 
 | Optionality | minOccurs | maxOccurs |
@@ -67,11 +67,9 @@ Other configurations of `minOccurs` and `maxOccurs` are currently not allowed.
 
 ## Available developer libraries
 
-To help you get started with development, there is a [directory of IDS libraries](https://technical.buildingsmart.org/resources/software-implementations/) that you may use in your application. 
+To help you get started with development, there is a [directory of IDS libraries](https://technical.buildingsmart.org/resources/software-implementations/) that you may use in your application.
 
 Please feel free to [submit your library](https://technical.buildingsmart.org/resources/software-implementations/) (you need to login).
-
-
 
 ## More reading
 

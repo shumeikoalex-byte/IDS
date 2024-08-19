@@ -1,6 +1,6 @@
 # Information Delivery Specification
 
-![IDS Logo](ids-logo.png)
+<img src="Graphics/IDS-logo-with-letters.png" alt="IDS Logo" width="300"/>
 
 **Information Delivery Specification (IDS)** is a buildingSMART standard for specifying and checking simple information requirements from IFC models. It is designed as a free, lightweight, standardised approach to model checking.
 
@@ -8,7 +8,7 @@
 
 An IDS is a file format ending in `.ids` containing a list of information **Specifications**. For example, a single **Specification** might say that "_all walls must have a fire rating property_". Model authors receiving an IDS file can use it to ensure all required information is provided for each **Specification**. Model recipients may use the IDS file to check whether the IFC model meets all of the **Specifications**. Reports may also be generated to list the results of **Specification** compliance checks.
 
-![IDS Diagram](ids-diagram.png)
+![IDS Diagram](Graphics/ids-diagram.png)
 
 IDS file creation tools and model checking tools are provided by many [software vendors](https://technical.buildingsmart.org/resources/software-implementations/). You can write your own customised IDS **Specifications** from scratch or start from a [public IDS template](todo). Any IFC model produced from any software can be checked by an IDS file.
 

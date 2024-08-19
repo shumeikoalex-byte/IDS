@@ -1,7 +1,7 @@
 # How do specifications work?
 
 A **Specification** is designed to be easy for humans to understand.
-However, **Specifications** are also highly structured so that computer software may automatically and accurately check information requirements with no ambiguity. 
+However, **Specifications** are also highly structured so that computer software may automatically and accurately check information requirements with no ambiguity.
 Every **Specification** has three main parts:
 
 1. **Description**: a description of the rationale for the **Specification** and instructions of how to achieve it.
@@ -9,27 +9,27 @@ Every **Specification** has three main parts:
 
   This field is also used to describe the rationale for the various applicability facets, and how they serve to identify the relevant data contracts on an asset as a whole, rather than individually. Conversely, the `description` data on each requirement facet should help the user understand the purpose of the individual piece of information required.
 
-2. **Applicability**: Identifies the subset of the model that we are intending to specify.
+1. **Applicability**: Identifies the subset of the model that we are intending to specify.
   There are many different types of objects in IFC models, but each **Specification** only applies to a subset.
   The subset can be identified via the available facets like entity (e.g. walls, windows), classification (e.g. Uniclass EF_25_10_25  External walls), and others.
-3. **Requirements**: what information is required for subset identified in the applicability, such as required properties or materials.
+1. **Requirements**: what information is required for subset identified in the applicability, such as required properties or materials.
 
 For example, the **Specification** of "_all walls must have a fire rating property_" is structured like so:
 
  1. **Description**: wall fire ratings are critical for building code compliance
- 2. **Applicability**: this specification applies to all wall objects
- 3. **Requirements**: the aforementioned wall objects must have a fire rating property
+ 1. **Applicability**: this specification applies to all wall objects
+ 1. **Requirements**: the aforementioned wall objects must have a fire rating property
 
 ## How specifications can describe information
 
-**Applicability** and **Requirements** are described using a collection **Facets**. A **Facet** describes information that a single entity (e.g. wall, door, etc) in your model may have. 
+**Applicability** and **Requirements** are described using a collection **Facets**. A **Facet** describes information that a single entity (e.g. wall, door, etc) in your model may have.
 A **Facet** describes its information precisely using fixed **Facet Parameters** so that computers can understand exactly what information you are after.
 
 When a **Facet** is used in the **Applicability** section, it describes the information that we use to identify the relevant parts of the model.
 
 When a **Facet** is used in the **Requirements** section, it describes the information constraints that the model parts must fulfill to comply with the **Specification**.
 
-![IDS Structure](ids-structure.png)
+![IDS Structure](Graphics/ids-structure.png)
 
 There are six different **Facets** of information:
 

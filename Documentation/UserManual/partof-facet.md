@@ -13,7 +13,7 @@ While objects in IFC can have multiple relationships to other objects. IDS part-
 
 When the `relation` parameter is not specified, then all 6 are to be considered (recursively) to identify containing entities, otherwise only the specified relation type should be considered (also recursively).
 
-![Example of part of identification](graphics/partof-Relations.png)
+![Example of part of identification](Graphics/partof-Relations.png)
 
 ## Parameters
 
