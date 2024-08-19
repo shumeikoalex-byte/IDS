@@ -1,0 +1,15 @@
+C:\Code\IDS_repo\SchemaProject\bin\Release\net6.0\SchemaProject.exe
+C:\Code\IDS_repo\SchemaProject\bin\Release\net6.0\SchemaProject.deps.json
+C:\Code\IDS_repo\SchemaProject\bin\Release\net6.0\SchemaProject.runtimeconfig.json
+C:\Code\IDS_repo\SchemaProject\bin\Release\net6.0\SchemaProject.dll
+C:\Code\IDS_repo\SchemaProject\bin\Release\net6.0\SchemaProject.pdb
+C:\Code\IDS_repo\SchemaProject\obj\Release\net6.0\SchemaProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code\IDS_repo\SchemaProject\obj\Release\net6.0\SchemaProject.AssemblyInfoInputs.cache
+C:\Code\IDS_repo\SchemaProject\obj\Release\net6.0\SchemaProject.AssemblyInfo.cs
+C:\Code\IDS_repo\SchemaProject\obj\Release\net6.0\SchemaProject.csproj.CoreCompileInputs.cache
+C:\Code\IDS_repo\SchemaProject\obj\Release\net6.0\SchemaProject.sourcelink.json
+C:\Code\IDS_repo\SchemaProject\obj\Release\net6.0\SchemaProject.dll
+C:\Code\IDS_repo\SchemaProject\obj\Release\net6.0\refint\SchemaProject.dll
+C:\Code\IDS_repo\SchemaProject\obj\Release\net6.0\SchemaProject.pdb
+C:\Code\IDS_repo\SchemaProject\obj\Release\net6.0\SchemaProject.genruntimeconfig.cache
+C:\Code\IDS_repo\SchemaProject\obj\Release\net6.0\ref\SchemaProject.dll
