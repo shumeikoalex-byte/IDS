@@ -1,14 +1,14 @@
 2021 Detailed Project Plan/2021 IDS detailed project plan.docx
-build/bin/
-build/obj/
+/RepositoryAutomation/build/bin
+/RepositoryAutomation/build/obj/
 .vscode/
 .tmp/
-/build/.vs/
+/RepositoryAutomation/build/.vs/
 /.nuke/temp/
 /.vs/
-/SchemaProject/.vs/
-/SchemaProject/bin/
-/SchemaProject/obj/
-/SchemaProject/Ids.cs
+/RepositoryAutomation/SchemaProject/.vs/
+/RepositoryAutomation/SchemaProject/bin/
+/RepositoryAutomation/SchemaProject/obj/
+/RepositoryAutomation/SchemaProject/Ids.cs
 .DS_Store
 
