@@ -2,7 +2,7 @@
 
 <img src="Graphics/IDS-logo-with-letters.png" alt="IDS Logo" width="300"/>
 
-**Information Delivery Specification (IDS)** is a buildingSMART standard for specifying and checking simple information requirements from IFC models. It is designed as a free, lightweight, standardised approach to model checking.
+**Information Delivery Specification (IDS)** is a buildingSMART standard for specifying and checking simple information requirements from IFC models. It is designed as a free, lightweight, standardised approach to model checking. Read more on the official website: https://www.buildingsmart.org/standards/bsi-standards/information-delivery-specification-ids/
 
 ## Introduction
 
@@ -10,16 +10,17 @@ An IDS is a file format ending in `.ids` containing a list of information **Spec
 
 ![IDS Diagram](Graphics/ids-diagram.png)
 
-IDS file creation tools and model checking tools are provided by many [software vendors](https://technical.buildingsmart.org/resources/software-implementations/). You can write your own customised IDS **Specifications** from scratch or start from a [public IDS template](todo). Any IFC model produced from any software can be checked by an IDS file.
+IDS file creation tools and model checking tools are provided by many [software vendors](https://technical.buildingsmart.org/ids-software-implementations/). Any IFC model produced from any software can be checked against an IDS file.
 
 ## Beginners tutorial
 
- 1. [Download and install your favourite software](https://technical.buildingsmart.org/resources/software-implementations/) that supports IDS from the software vendors directory. There is software available for Windows, Mac, and Linux.
- 2. [Download a sample IDS file](library/sample.ids). This IDS file has two **Specifications**. The first specifies that _the project name should be TEST_. The second specifies that _all walls must have a fire rating property_.
- 3. [Download a sample IFC model to check](library/sample.ifc). This IFC model has "TEST" as the project name, which satisfies the first **Specification**. However, some walls have a fire rating property, and others do not.
- 4. Load both the IDS and the IFC in your software, and begin the checking process.
+ 1. Choose software that supports IDS (see [list of tools supporting IDS](https://technical.buildingsmart.org/ids-software-implementations/)).
+ 2. Download a [sample IDS file](../Examples/IDS_wooden-windows.ids).
+ 3. Download a [sample IFC model](../Examples/IDS_wooden-windows_IFC.ifc) to check against the IDS.
+ 4. Load both the IDS and the IFC in your software and begin the checking process.
+ 5. You should obtain a report of all the non-compliances.
 
-That's it! You may also find more sample IDS templates in the [buildingSMART IDS Template Directory](https://github.com/buildingSMART/IDS/tree/master/Development) and more sample IFC models in the [buildingSMART IFC model directory](https://github.com/buildingSMART/Sample-Test-Files).
+That's it! You may also find more sample IDS files in the [Examples](../Examples).
 
 If you need help, please feel free to ask for help on the [buildingSMART Forums](https://forums.buildingsmart.org/).
 
