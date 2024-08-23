@@ -63,7 +63,7 @@ NAME is mandatory.
 | NAME           | ✅       | ❌       | ✅         | ✅            |
 | NAME / [VALUE] | ✅       | ✅       | ✅         | ✅            |
 
-### Interpretation
+### Attribute facet interpretation
 
 REQUIRED
 
@@ -104,7 +104,7 @@ For an evaluation of the rationale, see [these minutes](https://github.com/build
 
 ⚠️TODO: is IFCLABEL($) valid IFC?
 
-### Interpretation
+### Property facet interpretation
 
 REQUIRED
 
@@ -185,9 +185,7 @@ APPLICABILITY
 |                | ✅       | ❌       | ✅         | ✅            |
 | [VALUE]        | ✅       | ✅       | ✅         | ✅            |
 
-Optional is intended to help provide a closed list of values (useful for bim authors)
-
-https://github.com/buildingSMART/IDS/issues/92
+Optional is intended to help provide a closed list of values (useful for bim authors).
 
 Optional = If the applicable element has materials at least one should match the value
 
@@ -224,7 +222,7 @@ APPLICABILITY
 ⚠️TODO: in the documentation we will be explicit that traversing IfcRelDecomposition for the purpose of material evaluation will not be implemented in 1.0.
 
 We need to define what is the behaviour when it comes to the IfcRelDecomposition and the propagation of materials.
-The relevant issue is https://github.com/buildingSMART/IDS/issues/198
+The relevant conversation issue is [#198](https://github.com/buildingSMART/IDS/issues/198)
 
 ## PartOf
 
@@ -258,9 +256,9 @@ APPLICABILITY:
 - Entity: A relation exists to the type of entity required (traversing all valid relationships)
 - Entity/Relation: A relation exists to the type of entity required (traversing only the defined relationship type)
 
-# Questions
+## Questions
 
-## restriction clone
+### restriction clone
 
 Spinning our own `xs:restriction` alternative, would remove some issues with basetype and embedded xml entities
 
