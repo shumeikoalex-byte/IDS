@@ -405,6 +405,8 @@ Columns of the table determine the validity of the type depending on the schema 
 
 The list of valid XML base types for the `base` attribute of `xs:restriction`, and the associated regex expression to check for the validity of string representation is as follows:
 
+<!-- markdownlint-disable MD052 -->
+
 | Base type   | string regex constraint                                                  |
 | ----------- | ------------------------------------------------------------------------ |
 | xs:boolean  | ^(true&#124;false&#124;0&#124;1)$                                        |
@@ -416,9 +418,11 @@ The list of valid XML base types for the `base` attribute of `xs:restriction`, a
 | xs:string   | ^.?$                                                                     |
 | xs:time     | ^\d{2}:\d{2}:\d{2}(\.\d+)?(Z&#124;([+-]\d{2}:\d{2}))?$                   |
 
-For example: 
+<!-- markdownlint-enable MD052 -->
 
-- To specify numbers: you must use a dot as the decimal separator, and not use a thousands separator (e.g. `4.2` is valid, but `1.234,5` is invalid). Scientific notation is allowed (e.g. `1e3` to represent `1000`). 
+For example:
+
+- To specify numbers: you must use a dot as the decimal separator, and not use a thousands separator (e.g. `4.2` is valid, but `1.234,5` is invalid). Scientific notation is allowed (e.g. `1e3` to represent `1000`).
 - To specify boolean: valid values are `true` or `false`, `0`, or `1`.
 
 ## Notes

@@ -20,8 +20,25 @@ class Build : NukeBuild
     [PackageExecutable("dotnet-xscgen", "tools/net6.0/any/xscgen.dll")]
     private Tool SchemaTool;
 
-    static Nuke.Common.IO.AbsolutePath SchemaProjectFolder { get; } = RootDirectory / "SchemaProject";
-    static Nuke.Common.IO.AbsolutePath SchemaProjectFileName { get; } = SchemaProjectFolder / "SchemaProject.csproj";
+	static AbsolutePath SchemaProjectFolder { get; } = RepositoryRootDirectory / "RepositoryAutomation" / "SchemaProject";
+    static AbsolutePath SchemaProjectFileName { get; } = SchemaProjectFolder / "SchemaProject.csproj";
+
+    static AbsolutePath RepositoryRootDirectory
+    {
+        get
+        {
+            var tmp = RootDirectory;
+            while (tmp != null)
+            {
+                var p = tmp / "RepositoryAutomation";
+                if (p.Exists())
+                    return tmp;
+                tmp = tmp.Parent;
+			}
+            // fall back on root directory if not found.
+            return RootDirectory;
+		}
+    }
 
     /// <summary>
     /// Produces c# IDS schema files starting from the XSD format.
@@ -32,10 +49,11 @@ class Build : NukeBuild
         .AssuredAfterFailure()
         .Executes(() =>
         {
-            // ======= Preparing IDS Schema
+			// ======= Preparing IDS Schema
+			Console.WriteLine($"RepositoryRootDirectory is {RepositoryRootDirectory}");
 
-            // development samples
-            var schemaFile = RootDirectory / "Development" / "ids.xsd";
+			// development samples
+			var schemaFile = RepositoryRootDirectory / "Schema" / "ids.xsd";
             var schemaContent = File.ReadAllText(schemaFile);
 
             // min/max cardinality hack
@@ -155,19 +173,19 @@ class Build : NukeBuild
     /// The tool is deployed by the annotated <see cref="IdsTool"/>.
     /// The schema is loaded from the repository to ensure internal coherence.
     /// </summary>
-    Target AuditDevelopment => _ => _
+    Target AuditExamples => _ => _
         .AssuredAfterFailure()
         .Executes(() =>
         {
             // development samples
-            var schemaFile = RootDirectory / "Development" / "ids.xsd";
-            var inputFolder = RootDirectory / "Development";
+            var schemaFile = RepositoryRootDirectory / "Schema" / "ids.xsd";
+            var inputFolder = RepositoryRootDirectory / "Documentation" / "Examples";
             var arguments = $"audit \"{inputFolder}\" -x \"{schemaFile}\"";
             IdsTool(arguments, workingDirectory: IdsToolPath);
         });
 
     /// <summary>
-    /// Audits the validity of Documentation/testcases folder in the repository, using ids-tool.
+    /// Audits the validity of Documentation/ImplementersDocumentation/TestCases folder in the repository, using ids-tool.
     /// The tool is deployed by the annotated <see cref="IdsTool"/>.
     /// The schema is loaded from the repository to ensure internal coherence.
     /// </summary>
@@ -175,19 +193,19 @@ class Build : NukeBuild
         .AssuredAfterFailure()
         .Executes(() =>
         {
-            // we are omitting tests on the content of the Documentation/testcases folder, 
+            // we are omitting tests on the content of the Documentation/ImplementersDocumentation/TestCases folder, 
             // because they include IDSs that intentionally contain errors
             //
             // todo: once stable, this could be improved to omit contents based on failure patter name
             // todo: once stable, constrained on expected auditing failures on the "fail-" cases should be added
-            var schemaFile = RootDirectory / "Development" / "ids.xsd";
-            var inputFolder = RootDirectory / "Documentation" / "testcases";
+            var schemaFile = RepositoryRootDirectory / "Schema" / "ids.xsd";
+            var inputFolder = RepositoryRootDirectory / "Documentation" / "ImplementersDocumentation" / "TestCases";
             var arguments = $"audit \"{inputFolder}\" --omitContentAuditPattern \"[\\\\|/]invalid-\" -x \"{schemaFile}\"";
             IdsTool(arguments, workingDirectory: IdsToolPath);
         });
 
 	/// <summary>
-	/// Audits the validity of Documentation/testcases folder in the repository, using ids-tool.
+	/// Audits the validity of Documentation/ImplementersDocumentation/TestCases folder in the repository, using ids-tool.
 	/// The tool is deployed by the annotated <see cref="IdsTool"/>.
 	/// The schema is loaded from the repository to ensure internal coherence.
 	/// </summary>
@@ -195,13 +213,13 @@ class Build : NukeBuild
 		.AssuredAfterFailure()
 		.Executes(() =>
 		{
-			// we are omitting tests on the content of the Documentation/testcases folder, 
+			// we are omitting tests on the content of the Documentation/ImplementersDocumentation/TestCases folder, 
 			// because they include IDSs that intentionally contain errors
 			//
 			// todo: once stable, this could be improved to omit contents based on failure patter name
 			// todo: once stable, constrained on expected auditing failures on the "fail-" cases should be added
-			var schemaFile = RootDirectory / "Development" / "ids.xsd";
-			var inputFolder = RootDirectory / "Documentation" / "testcases";
+			var schemaFile = RepositoryRootDirectory / "Schema" / "ids.xsd";
+			var inputFolder = RepositoryRootDirectory / "Documentation" / "ImplementersDocumentation" / "TestCases";
 
             DirectoryInfo d = new DirectoryInfo(inputFolder);
             foreach (var invalidFile in d.GetFiles("invalid-*.ids", SearchOption.AllDirectories))
@@ -219,8 +237,6 @@ class Build : NukeBuild
                     
                 }
 			}
-
-
 		});
 
 	/// <summary>
@@ -229,7 +245,7 @@ class Build : NukeBuild
 	Target AuditAllIdsFiles => _ => _
         .AssuredAfterFailure()
         .DependsOn(AuditDocTestCases)
-        .DependsOn(AuditDevelopment)
+        .DependsOn(AuditExamples)
         .DependsOn(TestAccurateInvalid)
         .Executes(() =>
         {

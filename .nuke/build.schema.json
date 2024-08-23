@@ -73,8 +73,8 @@
             "type": "string",
             "enum": [
               "AuditAllIdsFiles",
-              "AuditDevelopment",
               "AuditDocTestCases",
+              "AuditExamples",
               "CleanSchemaProject",
               "CompileSchemaProject",
               "CreateTestCases",
@@ -89,8 +89,8 @@
             "type": "string",
             "enum": [
               "AuditAllIdsFiles",
-              "AuditDevelopment",
               "AuditDocTestCases",
+              "AuditExamples",
               "CleanSchemaProject",
               "CompileSchemaProject",
               "CreateTestCases",

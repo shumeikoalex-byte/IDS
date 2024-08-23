@@ -33,7 +33,7 @@ class Program
 		Console.WriteLine($"Process started in: {testCasesFolder.FullName}");
 		while (testCasesFolder is not null)
 		{
-			var p = Path.Combine(testCasesFolder.FullName, "Documentation", "testcases");
+			var p = Path.Combine(testCasesFolder.FullName, "Documentation", "ImplementersDocumentation", "TestCases");
 			DirectoryInfo d = new DirectoryInfo(p);
 			if (d.Exists)
 			{
@@ -44,7 +44,7 @@ class Program
 		}
 		if (testCasesFolder is null)
 		{
-			Message("Directory of testcases not found. Execution cancelled.", ConsoleColor.Red);
+			Message("Directory of Test Cases not found. Execution cancelled.", ConsoleColor.Red);
 			return;
 		}
 		Console.WriteLine($"Testcase generation started in: {testCasesFolder.FullName}");
@@ -115,6 +115,13 @@ class Program
 				buffer.AppendLine(line);
 			}
 		}
+		// report identified scripts
+		
+		Message($"Identified: {newIDSs.Count} IDS scripts.", 
+			newIDSs.Count == 0 ? ConsoleColor.Red : ConsoleColor.Green
+			);
+
+
 		// extra ifcs
 		foreach (var item in testCasesFolder.GetFiles("*.ifc", SearchOption.AllDirectories))
 		{
@@ -143,10 +150,10 @@ class Program
 			Console.WriteLine($"Extra IDS report generated: {reportFileName}");
 		}
 
-		
+		// If all found, make it clear
 		if (allIfcFound)
 		{
-			Message("All scripting IFC files found", ConsoleColor.Green);
+			Message("All testcases IFC files found.", ConsoleColor.Green);
 		}
 
 		Console.WriteLine("");
