@@ -20,8 +20,25 @@ class Build : NukeBuild
     [PackageExecutable("dotnet-xscgen", "tools/net6.0/any/xscgen.dll")]
     private Tool SchemaTool;
 
-    static Nuke.Common.IO.AbsolutePath SchemaProjectFolder { get; } = RootDirectory / "RepositoryAutomation" / "SchemaProject";
-    static Nuke.Common.IO.AbsolutePath SchemaProjectFileName { get; } = SchemaProjectFolder / "SchemaProject.csproj";
+	static AbsolutePath SchemaProjectFolder { get; } = RepositoryRootDirectory / "RepositoryAutomation" / "SchemaProject";
+    static AbsolutePath SchemaProjectFileName { get; } = SchemaProjectFolder / "SchemaProject.csproj";
+
+    static AbsolutePath RepositoryRootDirectory
+    {
+        get
+        {
+            var tmp = RootDirectory;
+            while (tmp != null)
+            {
+                var p = tmp / "RepositoryAutomation";
+                if (p.Exists())
+                    return tmp;
+                tmp = tmp.Parent;
+			}
+            // fall back on root directory if not found.
+            return RootDirectory;
+		}
+    }
 
     /// <summary>
     /// Produces c# IDS schema files starting from the XSD format.
@@ -32,10 +49,11 @@ class Build : NukeBuild
         .AssuredAfterFailure()
         .Executes(() =>
         {
-            // ======= Preparing IDS Schema
+			// ======= Preparing IDS Schema
+			Console.WriteLine($"RepositoryRootDirectory is {RepositoryRootDirectory}");
 
-            // development samples
-            var schemaFile = RootDirectory / "Schema" / "ids.xsd";
+			// development samples
+			var schemaFile = RepositoryRootDirectory / "Schema" / "ids.xsd";
             var schemaContent = File.ReadAllText(schemaFile);
 
             // min/max cardinality hack
@@ -160,8 +178,8 @@ class Build : NukeBuild
         .Executes(() =>
         {
             // development samples
-            var schemaFile = RootDirectory / "Schema" / "ids.xsd";
-            var inputFolder = RootDirectory / "Documentation" / "Examples";
+            var schemaFile = RepositoryRootDirectory / "Schema" / "ids.xsd";
+            var inputFolder = RepositoryRootDirectory / "Documentation" / "Examples";
             var arguments = $"audit \"{inputFolder}\" -x \"{schemaFile}\"";
             IdsTool(arguments, workingDirectory: IdsToolPath);
         });
@@ -180,8 +198,8 @@ class Build : NukeBuild
             //
             // todo: once stable, this could be improved to omit contents based on failure patter name
             // todo: once stable, constrained on expected auditing failures on the "fail-" cases should be added
-            var schemaFile = RootDirectory / "Schema" / "ids.xsd";
-            var inputFolder = RootDirectory / "Documentation" / "ImplementersDocumentation" / "TestCases";
+            var schemaFile = RepositoryRootDirectory / "Schema" / "ids.xsd";
+            var inputFolder = RepositoryRootDirectory / "Documentation" / "ImplementersDocumentation" / "TestCases";
             var arguments = $"audit \"{inputFolder}\" --omitContentAuditPattern \"[\\\\|/]invalid-\" -x \"{schemaFile}\"";
             IdsTool(arguments, workingDirectory: IdsToolPath);
         });
@@ -200,8 +218,8 @@ class Build : NukeBuild
 			//
 			// todo: once stable, this could be improved to omit contents based on failure patter name
 			// todo: once stable, constrained on expected auditing failures on the "fail-" cases should be added
-			var schemaFile = RootDirectory / "Schema" / "ids.xsd";
-			var inputFolder = RootDirectory / "Documentation" / "ImplementersDocumentation" / "TestCases";
+			var schemaFile = RepositoryRootDirectory / "Schema" / "ids.xsd";
+			var inputFolder = RepositoryRootDirectory / "Documentation" / "ImplementersDocumentation" / "TestCases";
 
             DirectoryInfo d = new DirectoryInfo(inputFolder);
             foreach (var invalidFile in d.GetFiles("invalid-*.ids", SearchOption.AllDirectories))
@@ -219,8 +237,6 @@ class Build : NukeBuild
                     
                 }
 			}
-
-
 		});
 
 	/// <summary>

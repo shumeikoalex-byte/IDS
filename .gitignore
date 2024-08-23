@@ -4,7 +4,7 @@
 .vscode/
 .tmp/
 /RepositoryAutomation/build/.vs/
-/.nuke/temp/
+**/.nuke/temp/
 /.vs/
 /RepositoryAutomation/SchemaProject/.vs/
 /RepositoryAutomation/SchemaProject/bin/
